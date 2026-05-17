@@ -3,12 +3,12 @@ from openai import OpenAI
 from openai.types.chat import ChatCompletion
 
 from config import OPENAI_API_KEY
-from loader import load
-from splitter import split
-from embedding import embed
-from vector_space import save_chunks, delete_chunks
-from retriever import retrieve
-from prompt import build_prompt
+from rag.loader import load
+from rag.splitter import split
+from rag.embedding import embed
+from rag.vector_space import save_chunks, delete_chunks
+from rag.retriever import retrieve
+from rag.prompt import build_prompt
 
 client = OpenAI(api_key=OPENAI_API_KEY)
 

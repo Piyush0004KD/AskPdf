@@ -1,5 +1,5 @@
-from embedding import embed
-from vector_space import search_chunks
+from rag.embedding import embed
+from rag.vector_space import search_chunks
 
 
 def retrieve(question:str , username:str , top_k:int = 5) -> list[str]:
