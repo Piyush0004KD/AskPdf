@@ -1,10 +1,24 @@
 from pypdf import PdfReader
 from docx import Document
 import io
+import os
 
-
+MAX_FILE_SIZE = 10*1024*1024
 
 def load(file_bytes: bytes , filename : str) -> str:
+
+
+    filename = os.path.basename(filename)
+    if not filename:
+        raise ValueError("Invalid file name")
+
+    if len(file_bytes)==0:
+        raise ValueError("Empty file")
+
+    if len(file_bytes) > MAX_FILE_SIZE:
+        raise ValueError("File size exceeds 10MB")
+
+
     if filename.endswith(".pdf"):
         text = load_pdf(file_bytes)
 

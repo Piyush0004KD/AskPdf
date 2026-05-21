@@ -1,6 +1,7 @@
-from fastapi import APIRouter
+from http.client import HTTPException
 from models.schemas import QueryRequest, QueryResponse
 from  rag.chain import ask
+from fastapi import APIRouter, HTTPException
 
 router = APIRouter()
 
@@ -14,8 +15,7 @@ async def ask_question(request: QueryRequest):
             username=request.username
         )
     except Exception as e:
-        return QueryResponse(
-            question=request.question,
-            answer=f"Error: {str(e)}",
-            username=request.username
+        raise HTTPException(
+            status_code=500,
+            detail=str(e)
         )
